@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Kafka's Castle</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#d4af37">
+</head>
+<body>
+    <!-- Error Boundary -->
+    <div id="errorBoundary" class="error-boundary hidden">
+        <div class="error-content">
+            <h3>Something went wrong</h3>
+            <p>The castle's systems are experiencing difficulties.</p>
+            <button onclick="location.reload()">Try Again</button>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <div id="mainContent">
+        <div id="scene">
+            <img id="bg" src="background.png" alt="Castle background">
+        </div>
+        <div id="content">
+            <h1><span class="gold"><span class="title-k">K</span>afka's <span class="title-c">C</span>astle</span></h1>
+            <h2 class="tagline main-tagline">Where bureaucracy is eternal and your patience is not</h2>
+            <h2 class="tagline sub-tagline">Solve the riddles. Choose your path. Enter the castle.</h2>
+            <div id="chatbox">
+                <div id="messages"></div>
+                <div class="input-container">
+                    <input id="userInput" placeholder="Type your reply…" autocomplete="off" aria-label="Type your message">
+                    <button id="sendBtn" aria-label="Send message">➤</button>
+                </div>
+            </div>
+            <div id="keySection">
+                <div id="keyButton" role="button" tabindex="0" aria-label="Click to enter the castle">🔑</div>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+    
+    <!-- Service Worker Registration -->
+    <script>
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('/sw.js')
+                    .then(registration => {
+                        console.log('SW registered: ', registration);
+                    })
+                    .catch(registrationError => {
+                        console.log('SW registration failed: ', registrationError);
+                    });
+            });
+        }
+    </script>
+</body>
+</html>

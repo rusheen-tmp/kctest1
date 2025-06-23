@@ -1,0 +1,199 @@
+/* Google Fonts Import */
+@import url('https://fonts.googleapis.com/css2?family=UnifrakturMaguntia&family=Cinzel:wght@400;600;700&family=Crimson+Text:wght@400;600;700&family=Playfair+Display:wght@400;600;700&family=IM+Fell+English:wght@400&family=IM+Fell+English+SC&family=IM+Fell+Double+Pica:wght@400&family=IM+Fell+Double+Pica+SC&family=IM+Fell+Great+Primer:wght@400&family=IM+Fell+Great+Primer+SC&family=Anton&display=swap');
+
+/* Performance optimizations */
+* {
+    box-sizing: border-box;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+/* Hardware acceleration for smooth animations */
+#chatbox, #keyButton, #sendBtn, #exitBtn {
+    transform: translateZ(0);
+    will-change: transform;
+}
+
+/* Reduce repaints for better performance */
+#messages {
+    contain: layout style paint;
+}
+
+/* Optimize scrolling */
+#messages {
+    -webkit-overflow-scrolling: touch;
+    scroll-behavior: smooth;
+}
+
+/* General */
+*{box-sizing:border-box;}
+body{margin:0;font-family:Georgia,serif;background:#000;color:#fff;overflow:hidden;display:flex;align-items:center;justify-content:center;min-height:100vh;}
+/* Error Boundary */
+.error-boundary{position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,.9);display:flex;align-items:center;justify-content:center;z-index:99;}
+.error-content{background:#111;border:1px solid #ff6b6b;padding:30px;text-align:center;max-width:400px;}
+.error-content button{padding:10px 20px;background:#ff6b6b;border:none;color:#fff;cursor:pointer;border-radius:4px;margin-top:15px;}
+.error-content button:hover{background:#ff5252;}
+/* Background */
+#scene{position:fixed;top:0;left:0;width:100%;height:100%;overflow:hidden;}
+#bg{width:100%;height:100%;object-fit:cover;filter:brightness(0.85);}
+/* Timer & Exit */
+#timer{position:fixed;top:15px;right:22px;font-family:"Courier New",monospace;font-size:1.4rem;color:#fff;z-index:10;line-height:1;}
+#exitBtn{position:fixed;top:15px;left:22px;padding:6px 14px;font-size:1rem;background:transparent;border:1px solid #d4af37;color:#d4af37;cursor:pointer;z-index:10;transition:filter .3s;}
+#exitBtn:hover{filter:drop-shadow(0 0 6px #d4af37);}
+#exitBtn:focus{outline:2px solid #d4af37;outline-offset:2px;}
+/* Content */
+#content{position:relative;z-index:5;text-align:center;width:100%;padding-top:40px;max-width:1200px;margin:0 auto;}
+.gold{color:#d4af37;}
+h1{margin:0 0 0 0;font-size:4.5rem;letter-spacing:3px;font-family:'IM Fell English SC', 'IM Fell English', 'Times New Roman', serif;text-shadow:3px 3px 6px rgba(0,0,0,0.9);font-weight:400;padding:10px 0 0 0;}
+h1 .title-k, h1 .title-c{font-size:5.2rem;color:#d4af37;text-shadow:4px 4px 8px rgba(0,0,0,0.9);}
+.gothic-title{font-family:'IM Fell English SC', 'IM Fell English', 'Times New Roman', serif;text-shadow:2px 2px 4px rgba(0,0,0,0.8);font-size:2.8rem;letter-spacing:1.5px;font-weight:400;}
+.tagline{font-size:1rem;margin:0 0 15px 0;font-weight:300;color:rgba(255,255,255,0.8);letter-spacing:1px;padding:5px 0;font-family:'Anton', sans-serif;}
+.main-tagline{margin:0 0 0 0;font-weight:400;padding:0 0 10px 0;}
+.sub-tagline{margin:0 0 20px 0;font-weight:300;padding:0;font-family:'Crimson Text', serif;font-style:italic;}
+/* Chatbox */
+#chatbox{width:80%;max-width:1000px;margin:0 auto;background:rgba(0,0,0,.3);border:1px solid rgba(255,255,255,.25);border-radius:6px;padding:25px;height:600px;display:flex;flex-direction:column;transition:background 0.5s ease;}
+#chatbox.large{height:600px;}
+#chatbox.brighten{background:rgba(0,0,0,.4);}
+#chatbox.typing{border-color:rgba(212,175,55,.5);box-shadow:0 0 10px rgba(212,175,55,.3);}
+#messages{flex:1;overflow-y:auto;font-size:1.2rem;text-align:left;line-height:1.6;padding:10px 0;}
+#userInput{margin-top:15px;padding:12px 50px 12px 15px;background:#111;border:1px solid #444;color:#fff;border-radius:4px;transition:border-color 0.3s;font-size:1rem;}
+#userInput:focus{border-color:#d4af37;outline:none;box-shadow:0 0 5px rgba(212,175,55,.3);}
+#userInput:disabled{opacity:0.6;cursor:not-allowed;}
+/* Send button */
+#sendBtn{position:absolute;right:5px;top:50%;transform:translateY(-50%);background:transparent;border:none;color:#d4af37;cursor:pointer;padding:8px;border-radius:4px;transition:all 0.3s;font-size:1.2rem;}
+#sendBtn:hover{background:rgba(212,175,55,0.2);color:#fff;}
+#sendBtn:disabled{opacity:0.4;cursor:not-allowed;}
+#sendBtn:focus{outline:2px solid #d4af37;outline-offset:2px;}
+/* Input container for positioning send button */
+.input-container{position:relative;margin-top:15px;}
+.nameGuard{color:#ffd700;}
+.nameYou{color:#20b2aa;}
+.gothic-text{font-family:'IM Fell English SC', 'IM Fell English', 'Times New Roman', serif;font-size:1.1rem;letter-spacing:0.5px;text-shadow:1px 1px 2px rgba(0,0,0,0.8);}
+/* Key & Enter on landing */
+#keySection{margin-top:20px;}
+#keyButton{width:80px;height:200px;background:linear-gradient(135deg,#d4af37 0%,#b8941f 50%,#d4af37 100%);border:2px solid #8b6914;border-radius:8px;cursor:pointer;display:none;transition:all 0.3s;position:relative;box-shadow:0 4px 8px rgba(0,0,0,0.3),inset 0 1px 0 rgba(255,255,255,0.2);}
+#keyButton:hover{transform:scale(1.05);filter:drop-shadow(0 0 15px #d4af37);box-shadow:0 6px 12px rgba(0,0,0,0.4),inset 0 1px 0 rgba(255,255,255,0.3);}
+#keyButton:focus{outline:2px solid #d4af37;outline-offset:5px;}
+#keyButton:active{transform:scale(0.98);}
+
+/* Key design elements */
+#keyButton::before{content:'';position:absolute;top:10px;left:50%;transform:translateX(-50%);width:40px;height:40px;background:radial-gradient(circle,#8b6914 0%,#6b4f0f 70%,#8b6914 100%);border:2px solid #5a3f0a;border-radius:50%;box-shadow:inset 0 2px 4px rgba(0,0,0,0.3);}
+#keyButton::after{content:'';position:absolute;bottom:15px;left:50%;transform:translateX(-50%);width:60px;height:80px;background:linear-gradient(135deg,#d4af37 0%,#b8941f 50%,#d4af37 100%);border:2px solid #8b6914;border-radius:4px;box-shadow:inset 0 2px 4px rgba(0,0,0,0.2);}
+
+#enterBtn{display:block;margin:10px auto 0;padding:10px 24px;font-size:1.1rem;border:1px solid #666;background:rgba(0,0,0,.4);color:#666;border-radius:4px;cursor:not-allowed;transition:all .35s;}
+#enterBtn.active{border-color:#d4af37;background:rgba(212,175,55,.15);color:#fff;cursor:pointer;text-shadow:0 0 6px #fff;}
+/* Modals */
+.hidden{display:none;}
+.modalOverlay{position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,.8);display:flex;align-items:center;justify-content:center;z-index:20;}
+.modalBox{background:#111;border:1px solid #d4af37;padding:20px 30px;max-width:350px;text-align:center;}
+.modalBox h3{margin-top:0;}
+.modalBox button{padding:8px 18px;margin:0 10px;border:1px solid #fff;background:transparent;color:#fff;cursor:pointer;transition:background .3s,color .3s;}
+.modalBox button:hover{background:#d4af37;color:#000;}
+.modalBox button:focus{outline:2px solid #d4af37;outline-offset:2px;}
+/* Win modal */
+#winModal{position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,.8);display:flex;align-items:center;justify-content:center;z-index:25;}
+.modalContent{background:#111;border:1px solid #d4af37;border-radius:6px;padding:30px;text-align:center;max-width:400px;position:relative;}
+.modalContent .closeBtn{position:absolute;top:10px;right:15px;background:none;border:none;color:#fff;font-size:1.5rem;cursor:pointer;padding:0;width:30px;height:30px;display:flex;align-items:center;justify-content:center;}
+.modalContent .closeBtn:hover{color:#d4af37;}
+.modalContent .closeBtn:focus{outline:2px solid #d4af37;outline-offset:2px;}
+.shareBtn{display:block;margin:20px auto 0;padding:10px 20px;background:transparent;border:2px solid #fff;color:#fff;cursor:pointer;border-radius:4px;transition:all 0.3s;}
+.shareBtn:hover{background:#fff;color:#000;}
+.shareBtn:active{transform:scale(0.95);}
+.shareBtn:focus{outline:2px solid #fff;outline-offset:2px;}
+.shareBtn.copied{background:#d4af37;border-color:#d4af37;color:#000;}
+/* Record status indicators */
+.status-escalated{color:#ffd54f;}
+.status-redacted{color:#ff6b6b;}
+.status-pending{color:#4fc3f7;}
+/* Visual feedback animations */
+@keyframes pulse{0%{opacity:1;}50%{opacity:0.7;}100%{opacity:1;}}
+.pulse{animation:pulse 1s ease-in-out;}
+@keyframes glow{0%{box-shadow:0 0 5px rgba(212,175,55,.3);}50%{box-shadow:0 0 15px rgba(212,175,55,.6);}100%{box-shadow:0 0 5px rgba(212,175,55,.3);}}
+.glow{animation:glow 2s ease-in-out infinite;}
+/* Accessibility improvements */
+.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0;}
+/* Focus indicators */
+*:focus{outline:2px solid #d4af37;outline-offset:2px;}
+/* Responsive */
+@media(max-width:600px){
+ h1{font-size:2.5rem;letter-spacing:1px;margin:0 0 0 0;padding:5px 0;}
+ h1 .title-k, h1 .title-c{font-size:2.8rem;}
+ .gothic-title{font-size:1.8rem;letter-spacing:1px;}
+ #content{padding-top:10px;padding-left:10px;padding-right:10px;}
+ #chatbox,#chatbox.large{width:95%;height:450px;padding:15px;}
+ #timer{font-size:1rem;top:10px;right:15px;}
+ #messages{font-size:1rem;padding:5px 0;}
+ #userInput{padding:10px 45px 10px 10px;font-size:0.9rem;margin-top:10px;}
+ #sendBtn{right:8px;padding:6px;font-size:1rem;}
+ .input-container{margin-top:10px;}
+ .tagline{font-size:0.9rem;margin:0 0 10px 0;padding:3px 0;}
+ .main-tagline{padding:0 0 5px 0;}
+ .sub-tagline{margin:0 0 15px 0;}
+}
+/* High contrast mode support */
+@media(prefers-contrast:high){
+ .gold{color:#ffff00;}
+ #keyButton{filter:drop-shadow(0 0 8px #ffff00);}
+}
+/* Reduced motion support */
+@media(prefers-reduced-motion:reduce){
+ .pulse{animation:none;}
+ .glow{animation:none;}
+}
+
+/* Mobile-specific focus handling */
+@media(max-width:600px){
+ *:focus{outline:none;}
+ #sendBtn:focus{outline:2px solid #d4af37;outline-offset:1px;}
+ #userInput:focus{outline:none;border-color:#d4af37;}
+ 
+ /* Additional mobile optimizations */
+ #chatbox{overflow:hidden;}
+ #messages{overflow-y:auto;overflow-x:hidden;}
+ .input-container{position:relative;width:100%;}
+ #userInput{width:100%;box-sizing:border-box;}
+ 
+ /* Ensure proper background coverage when focus outlines are removed */
+ #sendBtn{
+   background:transparent;
+   border-radius:4px;
+   margin:0;
+   padding:6px;
+ }
+ 
+ #sendBtn:focus{
+   background:rgba(212,175,55,0.1);
+   border:1px solid rgba(212,175,55,0.3);
+ }
+ 
+ #userInput{
+   background:#111;
+   border:1px solid #444;
+   border-radius:4px;
+   margin:0;
+   padding:10px 45px 10px 10px;
+ }
+ 
+ #userInput:focus{
+   background:#111;
+   border:1px solid #d4af37;
+   box-shadow:0 0 5px rgba(212,175,55,0.3);
+ }
+ 
+ /* Ensure chatbox background fills properly */
+ #chatbox{
+   background:rgba(0,0,0,0.3);
+   border:1px solid rgba(255,255,255,0.25);
+   border-radius:6px;
+   margin:0 auto;
+   padding:15px;
+ }
+ 
+ /* Ensure messages area background */
+ #messages{
+   background:transparent;
+   border-radius:4px;
+   margin:0;
+   padding:5px 0;
+ }
+}

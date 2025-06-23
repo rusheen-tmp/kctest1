@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Antechamber</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#d4af37">
+</head>
+<body>
+    <!-- Error Boundary -->
+    <div id="errorBoundary" class="error-boundary hidden">
+        <div class="error-content">
+            <h3>Something went wrong</h3>
+            <p>The antechamber's systems are experiencing difficulties.</p>
+            <button onclick="location.reload()">Try Again</button>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <div id="mainContent">
+        <div id="scene">
+            <img id="bg" src="background.png" alt="Castle background">
+        </div>
+        <button id="exitBtn" aria-label="Exit the castle">Exit</button>
+        <div id="timer" aria-label="Time elapsed">00:00</div>
+        <div id="content">
+            <h1 class="gothic-title"><span class="gold">Antechamber</span></h1>
+            <h2 class="tagline">The clerks process everything. Everything is processed.</h2>
+            <div id="chatbox" class="large">
+                <div id="messages" aria-label="Chat messages"></div>
+                <div class="input-container">
+                    <input id="userInput" placeholder="Start typing…" autocomplete="off" aria-label="Type your message">
+                    <button id="sendBtn" aria-label="Send message">➤</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Analytics -->
+    <script>
+        // Enhanced analytics for stage2
+        window.gameAnalytics = {
+            startTime: Date.now(),
+            attempts: 0,
+            hintsUsed: 0,
+            recordsViewed: 0,
+            completionTime: null,
+            trackEvent: function(event, data) {
+                console.log('Stage2 Event:', event, data);
+                // Could send to analytics service here
+            }
+        };
+    </script>
+
+    <script src="stage2.js"></script>
+    
+    <!-- Service Worker Registration -->
+    <script>
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('/sw.js')
+                    .then(registration => {
+                        console.log('SW registered: ', registration);
+                    })
+                    .catch(registrationError => {
+                        console.log('SW registration failed: ', registrationError);
+                    });
+            });
+        }
+    </script>
+</body>
+</html>
